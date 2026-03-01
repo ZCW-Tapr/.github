@@ -1,105 +1,145 @@
-**Commons Clause + MIT License**
+# Tapr: Gesture-Driven Trackpad Control System
 
----
+**Tapr** is an innovative open-source system for detecting and interpreting precise gestures using touch-sensing trackpads, translating them into configurable device control commands. Originally developed as a passion project to explore gesture recognition and hardware integration.
 
-## Commons Clause
+## What is Tapr?
 
-The Software is provided to you by the Licensor under the License, as defined below, subject to the following condition.
+Tapr bridges the gap between intuitive human interaction and device control by leveraging the capacitive sensors already present in modern trackpads. Instead of traditional button presses, app interactions, and keyboard commands, Tapr enables users to control devices through natural hand gestures—swipes, taps, and multi-finger interactions.
 
-Without limiting other conditions in the License, the grant of rights under the License will not include, and the License does not grant to you, the right to Sell the Software.
+### Core Concept
+The system is built on a layered architecture:
+- **Gesture Detection**: Low-level trackpad event processing and gesture state management
+- **Gesture Processing**: Real-time gesture recognition and classification
+- **Device Control**: REST API integration for controlling smart devices (Govee API supported)
 
-For purposes of the foregoing, "Sell" means practicing any or all of the rights granted to you under the License to provide to third parties, for a fee or other consideration (including without limitation fees for hosting or consulting services related to the Software), a product or service whose value derives, in whole or in part, from the functionality or value of the Software.
+## Repositories
 
-Any license notice or attribution required by the License must also include this Commons Clause License Condition notice.
+| Repository | Purpose | Status |
+|---|---|---|
+| **[Tapr-Trackpad](https://github.com/ZCW-Tapr/Tapr-Trackpad)** | Core gesture detection engine; reads raw trackpad events and processes them into actionable gestures | Python, Active |
+| **[Tapr-Backend-Controller](https://github.com/ZCW-Tapr/Tapr-Backend-Controller)** | Backend service for device control; translates gestures into API commands for smart devices | Java/Spring Boot, Active |
 
----
+## Getting Started
 
-## MIT License
+### Prerequisites
+- Python 3.8+ (for trackpad module)
+- Java 17+ (for backend controller)
+- Linux system with trackpad support
+- Smart devices compatible with control APIs (e.g., Govee Wi-Fi devices)
 
-Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or use the Software, subject to the following conditions:
+### Quick Setup
+1. Clone both repositories:
+   ```bash
+   git clone https://github.com/ZCW-Tapr/Tapr-Trackpad.git
+   git clone https://github.com/ZCW-Tapr/Tapr-Backend-Controller.git
+   ```
+2. See individual repository READMEs for installation and configuration
 
-**The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.**
+## Architecture Overview
 
-**Conditions and Limitations:**
-
-1. **Non-Commercial Use**: You may freely use, copy, modify, and distribute the Software for personal, educational, and non-commercial purposes.
-
-2. **Commercial Use Prohibited**: You may **not** use the Software for any commercial purpose, including but not limited to:
-   - Selling the Software or derivatives
-   - Offering services built on the Software (SaaS, consulting, integration services)
-   - Incorporating the Software into a commercial product
-   - Using the Software for internal business operations (beyond 1-person or non-profit)
-   - Any use intended to generate revenue
-
-3. **Commercial Licensing**: To use Tapr for commercial purposes, you must obtain a **separate commercial license** from the copyright holder(s) at Tapr's official contact.
-
-4. **Derivative Works**: Any modifications or derivative works must retain this license and the same non-commercial restriction.
-
----
-
-## Attribution and Derivative Notice
-
-If you create a derivative work, you must:
-- Retain all original copyright notices
-- Include a prominent notice that the work is a derivative of Tapr
-- Include this license file in full
-- Make clear what modifications were made
-
-**Example derivative header:**
 ```
-This is a modified version of Tapr
-Original: https://github.com/ZCW-Tapr/Tapr
-Modifications: [describe changes]
-Licensed under Commons Clause + MIT License
+Trackpad Events
+    ↓
+[Tapr-Trackpad] - Gesture Detection & State Management
+    ↓
+Gesture Data (HTTP/WebSocket)
+    ↓
+[Tapr-Backend-Controller] - Device Command Translation
+    ↓
+Smart Device APIs (Govee, etc.)
+    ↓
+Device Actions
 ```
 
----
+## Key Features
 
-## THE SOFTWARE IS PROVIDED "AS IS"
+✓ Real-time multi-touch gesture recognition  
+✓ Configurable gesture mappings  
+✓ REST API integration with smart device ecosystems  
+✓ Minimal latency event processing  
+✓ Extensible architecture for new device types  
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+## License & Commercial Terms
 
----
+**Tapr is licensed under Commons Clause + MIT License**
 
-## Commercial Licensing
+### Free Use (Non-Commercial)
+✅ Personal projects  
+✅ Educational use (students, universities)  
+✅ Non-profit organizations  
+✅ Open-source community projects (non-revenue)  
 
-If you wish to use Tapr for commercial purposes, please contact:
+### Commercial Use Requires Licensing
+❌ Companies using Tapr in products/services  
+❌ Commercial SaaS/consulting built on Tapr  
+❌ Selling software/hardware incorporating Tapr  
+❌ Enterprise deployments for profit  
+→ **Must obtain a commercial license** from the Tapr organization:
+Please reach out to Gabriel Cruz (Creator of Tapr) -> gabecruzpro@gmail.com
 
-**Email**: [Your contact info]  
-**GitHub**: https://github.com/ZCW-Tapr
+### Why This License?
 
-Commercial licenses are issued on a per-case basis and can include:
-- Full source code access
-- Priority support
-- Custom modifications
-- Integration assistance
-- Volume discounts for multiple deployments
-
----
-
-## FAQ
-
-**Q: Can I use Tapr in my personal project?**
-A: Yes, absolutely. Non-commercial use is free.
-
-**Q: Can I use Tapr in my company's internal operations?**
-A: Only if your company is a non-profit or if it's a single-person operation. Larger companies must obtain a commercial license.
-
-**Q: Can I modify Tapr?**
-A: Yes, you can modify it for personal/educational use. You may not sell your modifications.
-
-**Q: What if I'm a student at a university?**
-A: Educational use is free and unrestricted (as long as not for revenue).
-
-**Q: Can I use Tapr in an open-source project?**
-A: Yes, as long as your project is non-commercial. Your project must inherit the same Commons Clause license.
-
-**Q: What exactly counts as "commercial use"?**
-A: Any use where revenue is generated (directly or indirectly) or where the Software provides value to a business. Examples:
-- ✅ Free: Personal hobby projects, education, non-profit organizations
-- ❌ Commercial: Selling apps, providing paid services, B2B products, enterprise deployments
+Tapr represents original research and innovation in gesture-driven device control. We want to:
+1. Keep it free for learners and hobbyists
+2. Ensure companies pay for commercial use
+3. Protect our intellectual property from being privatized
+4. Fund ongoing development and support
 
 ---
 
-**Last Updated**: March 2026  
-**Licensor**: ZCW-Tapr Organization
+## Getting a Commercial License
+
+If you're interested in using Tapr commercially, contact us at:
+
+**Email**: gabecruzpro@gmail.com 
+**GitHub Issues**: [Tapr Organization](https://github.com/ZCW-Tapr)
+
+Commercial licenses include:
+- Legal right to use Tapr in your product/service
+- Priority technical support
+- Custom modifications and integrations
+- Flexible per-deployment or per-seat pricing
+
+---
+
+## Full License Text
+
+See [LICENSE](./LICENSE) in this repository for complete terms including:
+- Detailed Commons Clause language
+- MIT License full text
+- Attribution requirements
+- Disclaimer of warranties
+- Commercial licensing contact information
+
+## Contributing
+
+We welcome contributions! Please:
+1. Fork the relevant repository
+2. Create a feature branch
+3. Submit a pull request with clear documentation of changes
+4. Ensure code follows the existing style and includes comments
+
+For significant changes, please open an issue first to discuss.
+
+## Roadmap
+
+**MVP (Current)**
+- Basic gesture detection (tap, swipe)
+- Single-touch tracking
+- Govee device control integration
+
+**Future Considerations**
+- Advanced gesture patterns (mult-finger taps and slides)
+- Multi-device synchronization
+- Mobile-based gesture configuration UI
+- Additional smart device ecosystem support
+
+## Support & Documentation
+
+- **Bug Reports**: Use GitHub Issues in the relevant repository
+- **Questions**: Check repository READMEs and inline code comments
+- **Feature Requests**: Open a discussion in the organization
+
+---
+
+**Made with ⚡ for seamless gesture control**
